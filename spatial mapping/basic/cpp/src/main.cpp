@@ -122,7 +122,7 @@ int main(int argc, char** argv) {
                     // Configure Spatial Mapping parameters
 					spatial_mapping_parameters.resolution_meter = SpatialMappingParameters::get(SpatialMappingParameters::MAPPING_RESOLUTION::LOW);
                     spatial_mapping_parameters.use_chunk_only = true;
-                    spatial_mapping_parameters.save_texture = false;
+                    spatial_mapping_parameters.save_texture = true;
 #if CREATE_MESH
 					spatial_mapping_parameters.map_type = SpatialMappingParameters::SPATIAL_MAP_TYPE::MESH;
 #else
