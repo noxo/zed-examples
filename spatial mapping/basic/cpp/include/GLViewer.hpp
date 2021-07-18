@@ -88,7 +88,7 @@ public:
     template<typename T>
     bool init(int argc, char **argv, sl::CameraParameters, T*ptr);
     bool updateImageAndState(sl::Mat &image,  sl::Transform &pose, sl::POSITIONAL_TRACKING_STATE track_state, sl::SPATIAL_MAPPING_STATE mapp_state);
-    
+    static void mouseButtonCallback(int button, int state, int x, int y);
     void updateChunks() {
         new_chunks = true;
         chunks_pushed = false;

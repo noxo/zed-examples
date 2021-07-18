@@ -223,6 +223,7 @@ bool GLViewer::init(int argc, char **argv, sl::CameraParameters camLeft, T *ptr)
     glutInitWindowPosition(wnd_w * 0.05, wnd_h * 0.05);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
     glutCreateWindow("ZED Spatial Mapping Viewer");
+    glutMouseFunc(GLViewer::mouseButtonCallback);
     glViewport(0, 0, width, height);
 
     GLenum err = glewInit();
@@ -417,10 +418,10 @@ void GLViewer::printText() {
         // Show actions
         if(mapping_state == sl::SPATIAL_MAPPING_STATE::NOT_ENABLED) {
             glColor3f(0.15f, 0.15f, 0.15f);
-            printGL(-0.99f, 0.9f, "Hit Space Bar to activate Spatial Mapping.");
+            printGL(-0.99f, 0.9f, "Hit Space Bar/Mouse/Touch to activate Spatial Mapping.");
         } else {
             glColor3f(0.25f, 0.25f, 0.25f);
-            printGL(-0.99f, 0.9f, "Hit Space Bar to stop spatial mapping.");
+            printGL(-0.99f, 0.9f, "Hit Space Bar/Mouse/Touch to stop spatial mapping.");
         }
 
         std::string positional_tracking_state_str("POSITIONAL TRACKING STATE : ");
@@ -446,6 +447,10 @@ void GLViewer::printText() {
         }
         printGL(-0.99f, 0.83f, state_str.c_str());
     }
+}
+
+void GLViewer::mouseButtonCallback(int button, int state, int x, int y) {
+     currentInstance_->change_state = state == GLUT_UP;
 }
 
 void GLViewer::draw() {
