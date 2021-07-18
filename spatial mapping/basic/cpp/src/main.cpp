@@ -159,7 +159,11 @@ int main(int argc, char** argv) {
                         map.applyTexture(MESH_TEXTURE_FORMAT::RGB);
 #endif
                     // Save mesh as an OBJ file
-                    string saveName = getDir() + "mesh_gen.obj";
+                    time_t seconds;
+                    time(&seconds);
+                    stringstream ss;
+                    ss << seconds;
+                    string saveName = getDir() + "mesh_gen_" + ss.str() +".obj";
                     bool error_save = map.save(saveName.c_str());
                     if(error_save)
                         print("Mesh saved under: " +saveName);
